@@ -13,31 +13,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #pragma once
 
-#include "quantum.h"
-
-/* This a shortcut to help you visually see your layout.
- *
- * The first section contains all of the arguments representing the physical
- * layout of the board and position of the keys.
- *
- * The second converts the arguments into a two-dimensional array which
- * represents the switch matrix.
- */
-#define LAYOUT( \
-    k00, k01, k02, k03, \
-    k04, k05, k06, k07, \
-                   k08, \
-              r01, r02,  rt, r03, r04 \
-) \
-{ \
-    { k03, k07, k08 }, \
-    { k02, k06, k01 }, \
-    { k05, k00, k04 }, \
-    { r04, r04, r04 }, \
-    { r03, r03, r03 }, \
-    {  rt,  rt,  rt }, \
-    { r02, r02, r02 }, \
-    { r01, r01, r01 }, \
-}
+// place overrides here
