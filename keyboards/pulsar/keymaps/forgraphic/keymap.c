@@ -22,12 +22,32 @@
 //enum custom_keycodes {
 //};
 
+enum {
+  _BASE = 0,
+  _LED  = 1
+};
+
+enum {
+  TD_C_V       = 0,
+  TD_ENTER_LED = 1,
+};
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+  [TD_C_V] = ACTION_TAP_DANCE_DOUBLE(KC_C, KC_V),
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [0] = LAYOUT( /* Base */
-    KC_LSHIFT, KC_A, KC_S, KC_Y, \
-    KC_LCTRL,  KC_Z, KC_X, KC_C, \
-                           KC_LALT, \
-    JP_LBRC, KC_NO, RGB_TOG, KC_NO, JP_RBRC \
+  [_BASE] = LAYOUT( /* Base */
+    KC_LSHIFT, KC_A,    KC_S,     KC_Y, \
+    KC_LCTRL,  KC_Z,    KC_X,     TD(TD_C_V), \
+                                           KC_LALT, \
+    JP_LBRC,   XXXXXXX, LT(_LED, KC_ENTER), XXXXXXX, JP_RBRC \
+  ),
+  [_LED] = LAYOUT( /* Base */
+    _______, RGB_HUI, RGB_TOG, RGB_MODE_REVERSE, \
+    _______, RGB_HUD, _______, RGB_MODE_FORWARD, \
+                                        _______, \
+    RGB_VAD, _______, _______, _______, RGB_VAI  \
   ),
 };
 
@@ -44,6 +64,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
+void oled_task_user(void) {
+  oled_write_P(PSTR("Stats\n"), false);
+
+  switch (biton32(layer_state)) {
+    case _BASE:
+      oled_write_P(PSTR("Layer\n:BASE\n"), false);
+      break;
+    case _LED:
+      oled_write_P(PSTR("Layer\n:LED\n"), false);
+      break;
+  }
+}
+
 void matrix_init_user(void) {
 }
 
@@ -56,24 +89,20 @@ void led_set_user(uint8_t usb_led) {
 void encoder_update_user(uint8_t index, bool clockwise) {
   if (index == 0) {
     if (clockwise) {
-      if (get_mods() & MOD_LALT) {
-        rgblight_increase_hue();
-      } else if (get_mods() & MOD_LCTL) {
+      if (get_mods() & MOD_LCTL) {
         rgblight_step();
       } else if (get_mods() & MOD_LSFT) {
-        SEND_STRING(SS_TAP(X_END));
+        tap_code(KC_END);
       } else {
-        SEND_STRING(SS_LCTRL(";"));
+        tap_code(KC_MS_WH_DOWN);
       }
     } else {
-      if (get_mods() & MOD_LALT) {
-        rgblight_decrease_hue();
-      } else if (get_mods() & MOD_LCTL) {
+      if (get_mods() & MOD_LCTL) {
         rgblight_step_reverse();
       } else if (get_mods() & MOD_LSFT) {
-        SEND_STRING(SS_TAP(X_HOME));
+        tap_code(KC_HOME);
       } else {
-        SEND_STRING(SS_LCTRL("-"));
+        tap_code(KC_MS_WH_UP);
       }
     }
   }

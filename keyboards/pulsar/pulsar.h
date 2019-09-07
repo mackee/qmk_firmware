@@ -35,9 +35,9 @@
     { k03, k07, k08 }, \
     { k02, k06, k01 }, \
     { k05, k00, k04 }, \
-    { r04, r04, r04 }, \
-    { r03, r03, r03 }, \
-    {  rt,  rt,  rt }, \
-    { r02, r02, r02 }, \
-    { r01, r01, r01 }, \
+    { KC_NO, r04, KC_NO }, \
+    { KC_NO, r03, KC_NO }, \
+    { KC_NO,  rt, KC_NO }, \
+    { KC_NO, r02, KC_NO }, \
+    { KC_NO, r01, KC_NO }, \
 }

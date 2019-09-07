@@ -92,4 +92,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ENCODERS_PAD_A { B3 }
 #define ENCODERS_PAD_B { B2 }
 
-#define TAPPING_TERM 100
+#define TAPPING_TERM 200
