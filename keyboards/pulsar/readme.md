@@ -1,12 +1,11 @@
-# pulsar
+# Pulsar
 
-![pulsar](imgur.com image replace me!)
+![pulsar](https://i.imgur.com/c1mEFdP.jpg)
 
-A short description of the keyboard/project
+The Pulsar is for creators keyboard. This keyboard is used to manipulate by shortcuts with the left hand.
 
 Keyboard Maintainer: [mackee](https://github.com/mackee)
-Hardware Supported: The PCBs, controllers supported  
-Hardware Availability: links to where you can find this hardware
+Hardware Supported: Pulsar PCB Kit, Pro Micro
 
 Make example for this keyboard (after setting up your build environment):
 
