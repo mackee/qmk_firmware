@@ -1,43 +1,11 @@
-/* Copyright 2019 mackee
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-#pragma once
+#define PULSAR_H
 
 #include "quantum.h"
 
-/* This a shortcut to help you visually see your layout.
- *
- * The first section contains all of the arguments representing the physical
- * layout of the board and position of the keys.
- *
- * The second converts the arguments into a two-dimensional array which
- * represents the switch matrix.
- */
-#define LAYOUT( \
-    k00, k01, k02, k03, \
-    k04, k05, k06, k07, \
-                   k08, \
-              r01, r02,  rt, r03, r04 \
-) \
-{ \
-    { k03, k07, k08 }, \
-    { k02, k06, k01 }, \
-    { k05, k00, k04 }, \
-    { KC_NO, r04, KC_NO }, \
-    { KC_NO, r03, KC_NO }, \
-    { KC_NO,  rt, KC_NO }, \
-    { KC_NO, r02, KC_NO }, \
-    { KC_NO, r01, KC_NO }, \
-}
+#define encoder_update(clockwise) encoder_update_user(uint8_t index, clockwise)
+
+#if defined(KEYBOARD_pulsar_rev1)
+  #include "rev1.h"
+#elif defined(KEYBOARD_pulsar_rev2)
+  #include "rev2.h"
+#endif // Pulsar revisions
