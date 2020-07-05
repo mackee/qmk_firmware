@@ -21,8 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0x0000
-#define DEVICE_VER      0x0001
+#define PRODUCT_ID      0x9180
+#define DEVICE_VER      0x0002
 #define MANUFACTURER    macopy
 #define PRODUCT         pulsar
 #define DESCRIPTION     The minimal keyboard for Creators
@@ -90,3 +90,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ENCODERS_PAD_B { B1 }
 
 #define TAPPING_TERM 200
+
+#define BOOTMAGIC_LITE_ROW 0
+#define BOOTMAGIC_LITE_COLUMN 0
+
+#define DEBUG_ACTION
