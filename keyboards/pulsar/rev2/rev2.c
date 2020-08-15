@@ -73,7 +73,7 @@ uint8_t enabled_encoder_modes = 0xFF;
 void raw_hid_receive_kb(int8_t *data, uint8_t length) {
     uint8_t *command_id = (uint8_t *)&(data[0]);
     uint8_t *command_data = (uint8_t *)&(data[1]);
-    uprintf("command_id=%u\n");
+    uprintf("command_id=%u\n", *command_id);
     switch (*command_id) {
         case id_get_keyboard_value:
             switch (command_data[0]) {
@@ -246,7 +246,7 @@ void encoder_update_kb(uint8_t index, bool clockwise) {
             } else {
                 mapped_code = handle_encoder_ccw();
             }
-            uprintf("mapcode=%d\n", mapped_code);
+            uprintf("mapcode=%s\n", mapped_code);
             uint16_t held_keycode_timer = timer_read();
             if(mapped_code != 0){
                 register_code16(mapped_code);
